@@ -30,4 +30,7 @@
        tags: 
         Name: mehmood-pubsub1
       register: pubsub1output
+    
+    - debug: Printing the values returned for Subnet creation
+        var: pubsub1output
 
