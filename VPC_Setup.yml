@@ -29,9 +29,9 @@
         map_public: yes
         tags: 
          Name: mehmood-pubsub1
-       register: pubsub1output
+      register: pubsub1output
     
-    - debug: Printing the values returned for Subnet creation
+    - debug: 
         var: pubsub1output
 
     - name: Creating Subnet 2
@@ -44,9 +44,9 @@
         map_public: yes
         tags: 
          Name: mehmood-pubsub2
-       register: pubsub2output
+      register: pubsub2output
     
-    - debug: Printing the values returned for Subnet creation
+    - debug: 
         var: pubsub2output
 
     - name: Creating Subnet 3
@@ -59,7 +59,7 @@
         map_public: yes
         tags: 
          Name: mehmood-pubsub3
-       register: pubsub3output
+      register: pubsub3output
     
-    - debug: Printing the values returned for Subnet creation
+    - debug:
         var: pubsub3output
