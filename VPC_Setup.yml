@@ -71,7 +71,7 @@
         region: "{{region}}"
         az: "{{zone1}}"
         state: "{{state}}"
-        map_public: yes
+        map_public: no
         tags: 
          Name: mehmood-privsub1
       register: privsub1output
@@ -86,7 +86,7 @@
         region: "{{region}}"
         az: "{{zone2}}"
         state: "{{state}}"
-        map_public: yes
+        map_public: no
         tags: 
          Name: mehmood-privsub2
       register: privsub2output
@@ -101,7 +101,7 @@
         region: "{{region}}"
         az: "{{zone3}}"
         state: "{{state}}"
-        map_public: yes
+        map_public: no
         tags: 
          Name: mehmood-privsub3
       register: privsub3output
