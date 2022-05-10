@@ -1,0 +1,6 @@
+#Choosing AMI for bastion host
+bastion_ami: ami-0fa49cc9dc8d62c84
+#Selecting region
+region: us-east-2
+#adding the security group
+My_IP: 124.109.38.209/32
