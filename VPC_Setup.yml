@@ -21,15 +21,15 @@
       
     - name: Creating Subnets
       ec2_vpc_subnet:
-       vpc_id: "{{vpcoutput.vpc.id}}"
-       cidr: "{{PubSub1Cidr}}"
-       region: "{{region}}"
-       az: "{{zone1}}"
-       state: "{{state}}"
-       map_public: yes
-       tags: 
-        Name: mehmood-pubsub1
-      register: pubsub1output
+        vpc_id: "{{vpcoutput.vpc.id}}"
+        cidr: "{{PubSub1Cidr}}"
+        region: "{{region}}"
+        az: "{{zone1}}"
+        state: "{{state}}"
+        map_public: yes
+        tags: 
+         Name: mehmood-pubsub1
+       register: pubsub1output
     
     - debug: Printing the values returned for Subnet creation
         var: pubsub1output
