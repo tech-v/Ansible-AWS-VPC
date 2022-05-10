@@ -16,3 +16,18 @@
         state: "{{state}}"
       register: vpcoutput
 
+    - debug: Printing the values of retun JSON
+        var: vpcoutput
+      
+    - name: Creating Subnets
+      ec2_vpc_subnet:
+       vpc_id: "{{vpcoutput.vpc.id}}"
+       cidr: "{{PubSub1Cidr}}"
+       region: "{{region}}"
+       az: "{{zone1}}"
+       state: "{{state}}"
+       map_public: yes
+       tags: 
+        Name: mehmood-pubsub1
+      register: pubsub1output
+
