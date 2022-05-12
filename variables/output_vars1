@@ -1,0 +1,10 @@
+vpcid:vpc-030fdab86c49e7be9
+pubsub1id:subnet-0483cd80863867e85
+pubsub2id:subnet-06487fe05cf0e969d
+pubsub3id:subnet-0c900c8bd232848a7
+privsub1id:subnet-0f5a15221373f0436
+privsub2id:subnet-0b3b97d6a08238e3a
+privsub3id:subnet-0b1f584389cc184b7
+natgatewaypub1id:nat-0925babb2dd69d4fc
+routetablepublicid:rtb-0ec2f0c9756e4bb6a
+routetableprivateid:rtb-0cb8a47df7161460d
