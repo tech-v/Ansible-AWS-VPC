@@ -108,3 +108,15 @@
     
     - debug:
         var: privsub3output
+
+    - name: Creating internet GWs
+      ec2_vpc_igw:
+        vpc_id: "{{vpcoutput.vpc.id}}"
+        region: "{{region}}"
+        state: "{{state}}"
+        tags:
+         Name: internet-gateway
+      register: igwvpc
+
+    - debug:
+        var: igwvpc
