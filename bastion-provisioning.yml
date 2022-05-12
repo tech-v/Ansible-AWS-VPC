@@ -56,5 +56,6 @@
         vpc_subnet_id: "{{pubsub1id}}"
       register: ec2instanceoutput
 
-    - debug: ec2instanceoutput
+    - debug: 
+        var: ec2instanceoutput
             
