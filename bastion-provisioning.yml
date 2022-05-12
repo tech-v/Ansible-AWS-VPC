@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Importing the variables
-      include_vars: variables/output_vars1 
+      include_vars: variables/output_vars1.yml
 
     - name: Importing the variables
       include_vars: variables/bastion_host.yml
