@@ -164,4 +164,18 @@
       register: routetableprivate
 
     - debug:
-        var: routetableprivate
+        var: "{{item}}"
+      loop:
+        - vpcoutput.vpc.id
+        - pubsub1output.subnet.id
+        - pubsub2output.subnet.id
+        - pubsub3output.subnet.id
+        - privsub1output.subnet.id
+        - privsub2output.subnet.id
+        - privsub3output.subnet.id
+        - natgatewaypub1.nat_gateway_id   
+        - routetablepublic.route_table.id    
+        - routetableprivate.route_table.id 
+        - igwvpc.gateway_id
+
+    
