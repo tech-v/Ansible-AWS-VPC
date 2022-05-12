@@ -178,7 +178,7 @@
         - routetableprivate.route_table.id 
         - igwvpc.gateway_id
 
-    - set_facts: 
+    - set_fact: 
         vpcid: "{{vpcoutput.vpc.id}}"
         pubsub1id: "{{pubsub1output.subnet.id}}"
         pubsub2id: "{{pubsub2output.subnet.id}}"
