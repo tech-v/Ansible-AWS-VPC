@@ -191,3 +191,7 @@
         routetableprivateid: "{{routetableprivate.route_table.id}}"
         igwvpcid: "{{igwvpc.gateway_id}}"
         cacheable: yes
+    - name: Copy variables to file 
+      copy:
+        content: "vpcid:   {{vpcoutput.vpc.id}}\n pubsub1id:{{pubsub1output.subnet.id}}\n pubsub2id:{{pubsub2output.subnet.id}}\n pubsub3id:{{pubsub3output.subnet.id}}\n privsub1id:{{privsub1output.subnet.id}}\n privsub2id:{{privsub2output.subnet.id}}\n privsub3id:{{privsub3output.subnet.id}}\n natgatewaypub1id:{{natgatewaypub1.nat_gateway_id}}\n routetablepublicid:{{routetablepublic.route_table.id}} \n routetableprivateid:{{routetableprivate.route_table.id}}\n igwvpcid:{{igwvpc.gateway_id}}"   
+        
