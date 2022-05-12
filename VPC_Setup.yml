@@ -140,8 +140,6 @@
       ec2_vpc_nat_gateway:
         region: "{{region}}"
         state: "{{state}}"
-        tags:
-         Name: routetablepublic
         subnet_id: "{{pubsub1output.subnet.id}}"
         wait: yes
         if_exist_do_not_create: true
