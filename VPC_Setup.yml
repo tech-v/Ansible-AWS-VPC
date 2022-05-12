@@ -135,3 +135,36 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{igwvpc.gateway_id}}"
       register: routetablepublic
+
+    - name: Creating the NAT GATEWAY
+      ec2_vpc_nat_gateway:
+        vpc_id: "{{vpcoutput.vpc.id}}"
+        region: "{{region}}"
+        state: "{{state}}"
+        tags:
+         Name: routetablepublic
+        subnet_id: "{{pubsub1output.subnet.id}}"
+        wait: yes
+        if_exist_do_not_create: true
+      register: natgatewaypub1
+    - debug:
+        var: natgatewaypub1
+  
+  
+    - name: Setup private subnet route table
+      ec2_vpc_route_table:
+        vpc_id: "{{vpcoutput.vpc.id}}"
+        region: "{{region}}"
+        tags:
+         Name: routetableprivate
+        subnets: 
+          - "{{privsub1output.subnet.id}}"
+          - "{{privsub2output.subnet.id}}"
+          - "{{privsub3output.subnet.id}}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{natgatewaypub1.gateway_id}}"
+      register: routetableprivate
+
+    - debug:
+        var: routetableprivate
