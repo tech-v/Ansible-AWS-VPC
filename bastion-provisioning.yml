@@ -53,6 +53,7 @@
             Project: Personal
             Owner: Mehmood
           group_id: "{{bastionSG.group_id}}"
+          vpc_subnet_id: "{{pubsub1id}}"
         register: ec2instanceoutput
 
     - debug: ec2instanceoutput
