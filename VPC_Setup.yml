@@ -120,3 +120,18 @@
 
     - debug:
         var: igwvpc
+
+    - name: Creating the route tables
+      ec2_vpc_route_table:
+        vpc_id: "{{vpcoutput.vpc.id}}"
+        region: "{{region}}"
+        tags:
+         Name: routetablepublic
+        subnets: 
+          - "{{pubsub1output.subnet.id}}"
+          - "{{pubsub2output.subnet.id}}"
+          - "{{pubsub3output.subnet.id}}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{igwvpc.gateway_id}}"
+      register: routetablepublic
