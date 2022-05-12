@@ -1,0 +1,7 @@
+- name: Setup the bastion host for access
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Importing the variables
+      include_vars: variables/output_vars1 
