@@ -160,7 +160,7 @@
           - "{{privsub3output.subnet.id}}"
         routes:
           - dest: 0.0.0.0/0
-            gateway_id: "{{natgatewaypub1.gateway_id}}"
+            gateway_id: "{{natgatewaypub1.nat_gateway_id}}"
       register: routetableprivate
 
     - debug:
