@@ -178,4 +178,16 @@
         - routetableprivate.route_table.id 
         - igwvpc.gateway_id
 
-    
+    - set_facts: 
+        vpcid: "{{vpcoutput.vpc.id}}"
+        pubsub1id: "{{pubsub1output.subnet.id}}"
+        pubsub2id: "{{pubsub2output.subnet.id}}"
+        pubsub3id: "{{pubsub3output.subnet.id}}"
+        privsub1id: "{{privsub1output.subnet.id}}"
+        privsub2id: "{{privsub2output.subnet.id}}"
+        privsub3id: "{{privsub3output.subnet.id}}"
+        natgatewaypub1id: "{{natgatewaypub1.nat_gateway_id}}"   
+        routetablepublicid: "{{routetablepublic.route_table.id}}" 
+        routetableprivateid: "{{routetableprivate.route_table.id}}"
+        igwvpcid: "{{igwvpc.gateway_id}}"
+        cacheable: yes
