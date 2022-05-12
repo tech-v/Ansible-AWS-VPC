@@ -36,25 +36,25 @@
       register: bastionSG
 
     - name: Create EC2 Instance for bastion
-        ec2:
-          key_name: bastion-key
-          region: "{{region}}"
-          instance_type: t2.micro
-          image: "{{ bastion_ami }}"
-          wait: yes
-          wait_timeout: 300
-          instance_tags:
-            Name: "Bastion_Host"
-            Project: Personal
-            Owner: Mehmood
-          exact_count: 1
-          count_tag:
-            Name: "Bastion_Host"
-            Project: Personal
-            Owner: Mehmood
-          group_id: "{{bastionSG.group_id}}"
-          vpc_subnet_id: "{{pubsub1id}}"
-        register: ec2instanceoutput
+      ec2:
+        key_name: bastion-key
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{ bastion_ami }}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "Bastion_Host"
+          Project: Personal
+          Owner: Mehmood
+        exact_count: 1
+        count_tag:
+          Name: "Bastion_Host"
+          Project: Personal
+          Owner: Mehmood
+        group_id: "{{bastionSG.group_id}}"
+        vpc_subnet_id: "{{pubsub1id}}"
+      register: ec2instanceoutput
 
     - debug: ec2instanceoutput
             
