@@ -5,3 +5,55 @@
   tasks:
     - name: Importing the variables
       include_vars: variables/output_vars1 
+
+    - name: Importing the variables
+      include_vars: variables/bastion_host.yml
+
+    - name: Creating ec2 key
+      ec2_key:
+       name: mehmood-key
+       region: "{{region}}"
+      register: keyoutput
+
+    - name: Saving the key into file
+      copy: 
+        content: "{{keyoutput.key.private_key}}"
+        dest: "./bastion-key.pem"
+        mode: 0600
+      when: keyoutput.changed
+
+    - name: Creating the security group
+      ec2_group:
+        name: Bastion-Host
+        description: Allow port 22 and all ports within sg
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}" 
+        rules: 
+         - proto: tcp
+           from_port: 22
+           to_port: 22
+           cidr_ip: "{{My_IP}}"  
+      register: bastionSG
+
+    - name: Create EC2 Instance for bastion
+        ec2:
+          key_name: bastion-key
+          region: "{{region}}"
+          instance_type: t2.micro
+          image: "{{ bastion_ami }}"
+          wait: yes
+          wait_timeout: 300
+          instance_tags:
+            Name: "Bastion_Host"
+            Project: Personal
+            Owner: Mehmood
+          exact_count: 1
+          count_tag:
+            Name: "Bastion_Host"
+            Project: Personal
+            Owner: Mehmood
+          group_id: "{{bastionSG.group_id}}"
+        register: ec2instanceoutput
+
+    - debug: ec2instanceoutput
+            
