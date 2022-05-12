@@ -138,7 +138,6 @@
 
     - name: Creating the NAT GATEWAY
       ec2_vpc_nat_gateway:
-        vpc_id: "{{vpcoutput.vpc.id}}"
         region: "{{region}}"
         state: "{{state}}"
         tags:
