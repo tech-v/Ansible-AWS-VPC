@@ -54,8 +54,7 @@
           Owner: Mehmood
         group_id: "{{bastionSG.group_id}}"
         vpc_subnet_id: "{{pubsub1id}}"
-      register: ec2instanceoutput
+      register: ec2instanceout
 
     - debug: 
-        var: ec2instanceoutput
-            
+        var: ec2instanceout
