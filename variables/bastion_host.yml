@@ -1,5 +1,5 @@
 #Choosing AMI for bastion host
-bastion_ami: ami-0fa49cc9dc8d62c84
+bastion_ami: ami-02358d9f5245918a3
 #Selecting region
 region: us-east-2
 #adding the security group
