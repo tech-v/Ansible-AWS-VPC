@@ -193,5 +193,5 @@
         cacheable: yes
     - name: Copy variables to file 
       copy:
-        content: "vpcid: {{vpcoutput.vpc.id}}\npubsub1id: {{pubsub1output.subnet.id}}\npubsub2id: {{pubsub2output.subnet.id}}\npubsub3id: {{pubsub3output.subnet.id}}\nprivsub1id: {{privsub1output.subnet.id}}\n privsub2id: {{privsub2output.subnet.id}}\n privsub3id: {{privsub3output.subnet.id}}\n natgatewaypub1id: {{natgatewaypub1.nat_gateway_id}}\nroutetablepublicid: {{routetablepublic.route_table.id}}\nroutetableprivateid: {{routetableprivate.route_table.id}}\nigwvpcid: {{igwvpc.gateway_id}}"   
+        content: "vpcid: {{vpcoutput.vpc.id}}\npubsub1id: {{pubsub1output.subnet.id}}\npubsub2id: {{pubsub2output.subnet.id}}\npubsub3id: {{pubsub3output.subnet.id}}\nprivsub1id: {{privsub1output.subnet.id}}\nprivsub2id: {{privsub2output.subnet.id}}\nprivsub3id: {{privsub3output.subnet.id}}\nnatgatewaypub1id: {{natgatewaypub1.nat_gateway_id}}\nroutetablepublicid: {{routetablepublic.route_table.id}}\nroutetableprivateid: {{routetableprivate.route_table.id}}\nigwvpcid: {{igwvpc.gateway_id}}"   
         dest: variables/output_vars1.yml
