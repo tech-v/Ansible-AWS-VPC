@@ -34,9 +34,9 @@
       register: nginx_out
 
 
-    - name: Creating the security group for NGINX server
+    - name: Creating the security group for stack
       ec2_group:
-        name: NGINX-Server
+        name: stacksg
         description: Allow port 80 from everywhere and all ports within SG
         region: "{{region}}"
         vpc_id: "{{vpcid}}"
@@ -45,9 +45,21 @@
          - proto: tcp
            from_port: 80
            to_port: 80
-           group_id: "{{nginx_out.group_id}}"
+           group_id: "{{stacksg.group_id}}"
          - proto: tcp
            from_port: 22
            to_port: 22
            group_id: "{{BastionSGid}}"             
-      register: nginx_out
+      register: stacksg_out
+
+    - name: Updating security group for stack
+      ec2_group:
+        name: stacksg
+        description: Allow port 22 from everywhere and all ports within SG
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}"
+        purge_rules: no 
+        rules: 
+         - proto: all
+           group_id: "{{stacksg_out.group_id}}"
+      register: stacksgupdated_out
