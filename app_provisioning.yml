@@ -3,7 +3,7 @@
   gather_facts: False
   tasks:
     - name: Import VPC variables
-      include_vars: variables/outputvars1.yml
+      include_vars: variables/output_vars1.yml
     - name: Import VPC variables
       include_vars: variables/ami_ids
 
