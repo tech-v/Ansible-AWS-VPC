@@ -20,9 +20,9 @@
         mode: 0600
       when: nginxkey.changed
 
-    - name: Creating the security group for NGINX server
+    - name: Creating the security group for Load Balancer
       ec2_group:
-        name: NGINX-Server
+        name: Loadbalancer
         description: Allow port 80 from everywhere and all ports within SG
         region: "{{region}}"
         vpc_id: "{{vpcid}}" 
@@ -31,7 +31,7 @@
            from_port: 80
            to_port: 80
            cidr_ip: 0.0.0.0/0
-      register: nginx_out
+      register: loadbalancer_out
 
 
     - name: Creating the security group for stack
@@ -45,7 +45,7 @@
          - proto: tcp
            from_port: 80
            to_port: 80
-           group_id: "{{nginx_out.group_id}}"
+           group_id: "{{loadbalancer_out.group_id}}"
          - proto: tcp
            from_port: 22
            to_port: 22
