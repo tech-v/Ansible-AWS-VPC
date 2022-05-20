@@ -19,3 +19,35 @@
         dest: "./nginxkey.pem"
         mode: 0600
       when: nginxkey.changed
+
+    - name: Creating the security group for NGINX server
+      ec2_group:
+        name: NGINX-Server
+        description: Allow port 80 from everywhere and all ports within SG
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}" 
+        rules: 
+         - proto: tcp
+           from_port: 80
+           to_port: 80
+           cidr_ip: 0.0.0.0/0
+      register: nginx_out
+
+
+    - name: Creating the security group for NGINX server
+      ec2_group:
+        name: NGINX-Server
+        description: Allow port 80 from everywhere and all ports within SG
+        region: "{{region}}"
+        vpc_id: "{{vpcid}}"
+        purge_rules: no 
+        rules: 
+         - proto: tcp
+           from_port: 80
+           to_port: 80
+           group_id: "{{nginx_out.group_id}}"
+         - proto: tcp
+           from_port: 22
+           to_port: 22
+           group_id: "{{BastionSGid}}"             
+      register: nginx_out
