@@ -24,6 +24,6 @@ zone3: us-east-2c
 state: present
 
 #Choosing AMI for bastion host
-bastion_ami: ami-02358d9f5245918a3
+bastion_ami: ami-0fa49cc9dc8d62c84
 #adding the security group
 My_IP: 124.109.38.209/32
