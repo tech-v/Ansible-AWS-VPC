@@ -185,3 +185,69 @@
         var: fordatabaseout
 
 
+    - local_action:
+        module: ec2_elb_lb
+        name: "mehmoodapp-elb"
+        region: "{{region}}"
+        state: present
+        instance_ids:
+          - "{{ fornginxout.tagged_instances[0].id }}"
+        purge_instance_ids: true
+        security_group_ids: "{{ loadbalancer_out.group_id }}"
+        subnets:
+          - "{{ pubsub1id }}"
+          - "{{ pubsub2id }}"
+          - "{{ pubsub3id }}"
+        listeners:
+          - protocol: http # options are http, https, ssl, tcp
+            load_balancer_port: 80
+            instance_port: 80
+    
+    
+    - name: Insert/Update Hosts IP & Name in file provision-stack/group_vars/hostsip
+      blockinfile:
+        path: provision-stack/group_vars/hostsip
+        block: |
+          web01_ip: {{ fornginxout.tagged_instances[0].private_ip }}
+          app01_ip: {{ fortomcatout.tagged_instances[0].private_ip }}
+          rmq01_ip: {{ forrabbitmqout.tagged_instances[0].private_ip }}
+          mc01_ip: {{ formemcacheout.tagged_instances[0].private_ip }}
+          db01_ip: {{ fordatabaseout.tagged_instances[0].private_ip }}
+    - name: Copy login key to provision_stack directory
+      copy:
+        src: nginxkey.pem
+        dest: provision-stack/nginxkey.pem
+        mode: '0400'
+
+    - name: Insert/Update Inventory file provision-stack/inventory-vpro
+      blockinfile:
+        path: provision-stack/inventory-vpro
+        block: |
+          web01 ansible_host={{ fornginxout.tagged_instances[0].private_ip }}
+          app01 ansible_host={{ fortomcatout.tagged_instances[0].private_ip }}
+          rmq01 ansible_host={{ forrabbitmqout.tagged_instances[0].private_ip }}
+          mc01 ansible_host={{ formemcacheout.tagged_instances[0].private_ip }}
+          db01 ansible_host={{ fordatabaseout.tagged_instances[0].private_ip }}
+          cntl ansible_host=127.0.0.1 ansible_connection=local
+          [websrvgrp]
+          web01
+          [appsrvgrp]
+          app01
+          [rmqsrvgrp]
+          rmq01
+          [mcsrvgrp]
+          mc01
+          [dbsrvgrp]
+          db01
+          [control]
+          cntl
+          [stack_inst:children]
+          websrvgrp
+          appsrvgrp
+          rmqsrvgrp
+          mcsrvgrp
+          dbsrvgrp
+          [stack_inst:vars]
+          ansible_user=ubuntu
+          ansible_ssh_private_key_file=loginkey_vpro.pem
+          #ansible_python_interpreter=/usr/bin/python3
