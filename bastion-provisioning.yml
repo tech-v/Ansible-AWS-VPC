@@ -58,8 +58,8 @@
         var: ec2instanceout
 
     - name: insert the bastion host output in the variable file
-        blockinfile:
-          path: variables/output_vars1.yml
-          backup: yes
-          block: |
-            BastionSGid: {{bastionSG.group_id}}
+      blockinfile:
+       path: variables/output_vars1.yml
+       backup: yes
+       block: |
+         BastionSGid: {{bastionSG.group_id}}
