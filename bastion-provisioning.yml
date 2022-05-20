@@ -9,16 +9,16 @@
       include_vars: variables/creatingVPC.yml
     - name: Creating ec2 key
       ec2_key:
-       name: mehmood-key
+       name: mehmood-key1
        region: "{{region}}"
-      register: keyoutput
+      register: keyoutput22
 
     - name: Saving the key into file
       copy: 
-        content: "{{keyoutput.key.private_key}}"
-        dest: "./bastion-key.pem"
+        content: "{{keyoutput22.key.private_key}}"
+        dest: "./bastion-key22.pem"
         mode: 0600
-      when: keyoutput.changed
+      when: keyoutput22.changed
 
     - name: Creating the security group
       ec2_group:
@@ -35,7 +35,7 @@
 
     - name: Create EC2 Instance for bastion
       ec2:
-        key_name: mehmood-key
+        key_name: mehmood-key1
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{ bastion_ami }}"
