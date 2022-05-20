@@ -63,3 +63,125 @@
          - proto: all
            group_id: "{{stacksg_out.group_id}}"
       register: stacksgupdated_out
+
+    - name: Create EC2 Instance for NGINX
+      ec2:
+        key_name: nginxkey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{ ubuntu_image }}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "WEB01 NGINX"
+          Project: Personal
+          Owner: Mehmood
+        exact_count: 1
+        count_tag:
+          Name: "web01"
+          Project: Personal
+          Owner: Mehmood
+        group_id: "{{stacksg_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+      register: fornginxout
+
+    - debug: 
+        var: fornginxout
+
+    - name: Create EC2 Instance for TOMCAT
+      ec2:
+        key_name: nginxkey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{ ubuntu_image }}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "TOMCAT"
+          Project: Personal
+          Owner: Mehmood
+        exact_count: 1
+        count_tag:
+          Name: "tomcat"
+          Project: Personal
+          Owner: Mehmood
+        group_id: "{{stacksg_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+      register: fortomcatout
+
+    - debug: 
+        var: fortomcatout
+
+    - name: Create EC2 Instance for memcache
+      ec2:
+        key_name: nginxkey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{ ubuntu_image }}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "MEMCACHE"
+          Project: Personal
+          Owner: Mehmood
+        exact_count: 1
+        count_tag:
+          Name: "memcache"
+          Project: Personal
+          Owner: Mehmood
+        group_id: "{{stacksg_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+      register: formemcacheout
+
+    - debug: 
+        var: formemcacheout
+
+    - name: Create EC2 Instance for rabbitmq
+      ec2:
+        key_name: nginxkey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{ ubuntu_image }}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "RABBITMQ"
+          Project: Personal
+          Owner: Mehmood
+        exact_count: 1
+        count_tag:
+          Name: "rabbitmq"
+          Project: Personal
+          Owner: Mehmood
+        group_id: "{{stacksg_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+      register: forrabbitmqout
+
+    - debug: 
+        var: forrabbitmqout
+
+    - name: Create EC2 Instance for Database
+      ec2:
+        key_name: nginxkey
+        region: "{{region}}"
+        instance_type: t2.micro
+        image: "{{ ubuntu_image }}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: "Database"
+          Project: Personal
+          Owner: Mehmood
+        exact_count: 1
+        count_tag:
+          Name: "database"
+          Project: Personal
+          Owner: Mehmood
+        group_id: "{{stacksg_out.group_id}}"
+        vpc_subnet_id: "{{privsub1id}}"
+      register: fordatabaseout
+
+    - debug: 
+        var: fordatabaseout
+
+
