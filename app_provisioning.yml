@@ -1,0 +1,21 @@
+ - hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: Import VPC variables
+      include_vars: variables/outputvars1.yml
+    - name: Import VPC variables
+      include_vars: variables/ami_ids
+
+    - name: Creating ec2 key for nginx
+      ec2_key:
+       name: nginxkey
+       region: "{{region}}"
+      register: nginxkey
+
+    - name: Saving the key into file
+      copy: 
+        content: "{{nginxkey.key.private_key}}"
+        dest: "./nginxkey.pem"
+        mode: 0600
+      when: nginxkey.changed
