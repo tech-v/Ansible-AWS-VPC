@@ -1,2 +1,3 @@
 ubuntu_image: ami-0eafc468898ccbb45 
 region: "us-east-2"
+My_IP: 125.209.64.14
