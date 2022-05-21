@@ -221,7 +221,7 @@
 
     - name: Insert/Update Inventory file provision-stack/inventory-vpro
       blockinfile:
-        path: provision-stack/inventory
+        path: provision-stack/postexecution
         block: |
           web01 ansible_host={{ fornginxout.tagged_instances[0].private_ip }}
           app01 ansible_host={{ fortomcatout.tagged_instances[0].private_ip }}
