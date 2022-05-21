@@ -204,9 +204,9 @@
             instance_port: 80
     
     
-    - name: Insert/Update Hosts IP & Name in file provision-stack/group_vars/hostsip
+    - name: Insert/Update Hosts IP & Name in file provision-stack/group-vars/hostsip
       blockinfile:
-        path: provision-stack/group_vars/hostsip
+        path: provision-stack/group_vars/postexecution
         block: |
           web01_ip: {{ fornginxout.tagged_instances[0].private_ip }}
           app01_ip: {{ fortomcatout.tagged_instances[0].private_ip }}
@@ -221,7 +221,7 @@
 
     - name: Insert/Update Inventory file provision-stack/inventory-vpro
       blockinfile:
-        path: provision-stack/inventory-vpro
+        path: provision-stack/inventory
         block: |
           web01 ansible_host={{ fornginxout.tagged_instances[0].private_ip }}
           app01 ansible_host={{ fortomcatout.tagged_instances[0].private_ip }}
@@ -249,5 +249,5 @@
           dbsrvgrp
           [stack_inst:vars]
           ansible_user=ubuntu
-          ansible_ssh_private_key_file=loginkey_vpro.pem
+          ansible_ssh_private_key_file=nginx.pem
           #ansible_python_interpreter=/usr/bin/python3
