@@ -73,12 +73,12 @@
         wait: yes
         wait_timeout: 300
         instance_tags:
-          Name: "WEB01 NGINX"
+          Name: "WEB01"
           Project: Personal
           Owner: Mehmood
         exact_count: 1
         count_tag:
-          Name: "web01"
+          Name: "WEB01"
           Project: Personal
           Owner: Mehmood
         group_id: "{{stacksg_out.group_id}}"
@@ -102,7 +102,7 @@
           Owner: Mehmood
         exact_count: 1
         count_tag:
-          Name: "tomcat"
+          Name: "TOMCAT"
           Project: Personal
           Owner: Mehmood
         group_id: "{{stacksg_out.group_id}}"
@@ -126,7 +126,7 @@
           Owner: Mehmood
         exact_count: 1
         count_tag:
-          Name: "memcache"
+          Name: "MEMCACHE"
           Project: Personal
           Owner: Mehmood
         group_id: "{{stacksg_out.group_id}}"
@@ -150,7 +150,7 @@
           Owner: Mehmood
         exact_count: 1
         count_tag:
-          Name: "rabbitmq"
+          Name: "RABBITMQ"
           Project: Personal
           Owner: Mehmood
         group_id: "{{stacksg_out.group_id}}"
@@ -174,7 +174,7 @@
           Owner: Mehmood
         exact_count: 1
         count_tag:
-          Name: "database"
+          Name: "Database"
           Project: Personal
           Owner: Mehmood
         group_id: "{{stacksg_out.group_id}}"
