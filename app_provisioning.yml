@@ -206,7 +206,7 @@
     
     - name: Insert/Update Hosts IP & Name in file provision-stack/group-vars/hostsip
       blockinfile:
-        path: provision-stack/group_vars/postexecution
+        path: provision-stack/group-vars/postexecution
         block: |
           web01_ip: {{ fornginxout.tagged_instances[0].private_ip }}
           app01_ip: {{ fortomcatout.tagged_instances[0].private_ip }}
