@@ -1,3 +1,0 @@
----
-- import_playbook: VPC_Setup.yml
-- import_playbook: bastion-provisioning.yml
