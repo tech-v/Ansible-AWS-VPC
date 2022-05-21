@@ -2,8 +2,8 @@
   hosts: all
   tasks:
     - name: Import VPC setup Variable
-      include_vars: group_vars/postexecution
-      
+      include_vars: group-vars/postexecution
+
 
     - name: Update hosts file for all the hosts
       blockinfile:
